@@ -2,13 +2,30 @@ import jobs from "./data.js";
 
 const template = document.getElementById("job-list-template");
 const jobsList = document.getElementById("job-list");
+const filterAll = document.getElementById("filter-all")
 
+const allFilter = [];
 
 
 
 
 
 jobs.forEach((job) => {
+  let filterData = [
+    {
+      role: job.role
+    },
+    {
+      languages: [...job.languages],
+    },
+    {
+      tools: [...job.tools],
+    },
+    {
+      level: job.level
+    },
+  ];
+
   const clone = template.content.cloneNode(true);
   
   
@@ -36,43 +53,43 @@ jobs.forEach((job) => {
   clone.querySelector('.job-list__location').textContent = job.location;
   
   
-  jobsList.appendChild(clone)
   
   
-
-  //tools
-  //languages
-  //level
-  //role
-
- let filterData = [
-    {
-      role: job.role
-    },
-    {
-      languages: [...job.languages],
-    },
-    {
-      tools: [...job.tools],
-    },
-    {
-      level: job.level
-    },
-  ]
-
-  const jobListFilter = document.querySelector('.job-list__filter')
-  const filterTemclone = document.getElementById("filtered-template");
   
-  filterData.forEach((data) => {
-    const filterClone = filterTemClone.content.cloneNode(true);
-    const span = filterClone.querySelector(".job-list__filter__item");
-    console.log(`${Object.keys(data)[0]} : `, data[Object.keys(data)[0]]);
-    if(typeof data[Object.keys(data)[0]] != "object") {
-      span.textContent = data[Object.keys(data)[0]];
-      job-list__filter.appendChild(span);
-    }
-  })
-})
+   //tools
+   //languages
+   //level
+   //role
+  
+ 
+   //const filterTemclone = clone.qu(".job-list__filter");
+
+
+  
+     filterData.forEach((data) => {
+      const span = document.createElement("span");
+      span.classList.add('job-list__filter__item');
+       console.log(`${Object.keys(data)[0]} : `, data[Object.keys(data)[0]]);
+       if(typeof data[Object.keys(data)[0]] != "object") {
+         span.textContent = data[Object.keys(data)[0]];
+         span.setAttribute(`data-${data[Object.keys(data)[0]]}` , data[Object.keys(data)[0]]);
+     //    filterTemclone.appendChild(span);
+       } else {
+        const arr = data[Object.keys(data)[0]];
+        arr.forEach((item) => {
+          const span = document.createElement("span");
+          span.classList.add('job-list__filter__item');
+          span.textContent = item;
+       //   span.setAttribute(`data-${data[Object.keys(data)[0]]}` , item);
+         // filterTemclone.appendChild(span);
+        })
+       }
+     });
+
+
+   jobsList.appendChild(clone)
+
+});
 
 
 

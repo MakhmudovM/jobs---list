@@ -137,14 +137,7 @@ margin-bottom: 120px;
   line-height: 24px;
   font-weight: 500;
 }
-/*
-.job-list__contract {}
-.job-list__posted {
-}
-}
-.job-list__location {
-}
-*/
+
 .job-list__filter {
   display: flex;
   gap: 16px;
@@ -157,7 +150,20 @@ margin-bottom: 120px;
   line-height: 24px;
   cursor: pointer;
   color: #5ca5a5;
-
+}
+.filter-all{
+  background-color: #FFFFFF;
+  margin-bottom: 100px;
+}
+.filter-all .job-list__filter__item {
+  padding: 9px;
+  display: inline-block;
+}
+.filter-text {
+}
+.filter-icon {
+  padding: 9px;
+  background-color: #2b3939;
 }
 
 
